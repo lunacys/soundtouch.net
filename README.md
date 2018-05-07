@@ -1,7 +1,7 @@
 # soundtouch.net
 The SoundTouch Library is originally written by Olli Parviainen in C++. Although a .NET wrapper library is available, this library aims to be a complete rewrite in C#.
 
-##SoundTouch library Features
+## SoundTouch library Features
 
 * Easy-to-use implementation of time-stretch, pitch-shift and sample rate transposing routines.
 * Full source codes available for both the SoundTouch library and the example application.
