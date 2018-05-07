@@ -118,7 +118,7 @@ namespace SoundStretch
                 Console.Error.WriteLine("Uses 16bit integer sample type in processing.\n");
 #else
 #if !SOUNDTOUCH_FLOAT_SAMPLES
-    #error "Sampletype not defined"
+#error "Sampletype not defined"
 #endif
                 Console.Error.WriteLine("Uses 32bit floating point sample type in processing.\n");
 #endif
@@ -150,14 +150,14 @@ namespace SoundStretch
 
             int nChannels = inFile.GetNumChannels();
             Debug.Assert(nChannels > 0);
-            int buffSizeSamples = BUFF_SIZE/nChannels;
+            int buffSizeSamples = BUFF_SIZE / nChannels;
 
             // Process samples read from the input file
             while (!inFile.Eof())
             {
                 // Read a chunk of samples from the input file
                 int num = inFile.Read(sampleBuffer, BUFF_SIZE);
-                nSamples = num/inFile.GetNumChannels();
+                nSamples = num / inFile.GetNumChannels();
 
                 // Feed the samples into SoundTouch processor
                 pSoundTouch.PutSamples(sampleBuffer, nSamples);
@@ -173,7 +173,7 @@ namespace SoundStretch
                 do
                 {
                     nSamples = pSoundTouch.ReceiveSamples(sampleBuffer, buffSizeSamples);
-                    outFile.Write(sampleBuffer, nSamples*nChannels);
+                    outFile.Write(sampleBuffer, nSamples * nChannels);
                 } while (nSamples != 0);
             }
 
@@ -183,7 +183,7 @@ namespace SoundStretch
             do
             {
                 nSamples = pSoundTouch.ReceiveSamples(sampleBuffer, buffSizeSamples);
-                outFile.Write(sampleBuffer, nSamples*nChannels);
+                outFile.Write(sampleBuffer, nSamples * nChannels);
             } while (nSamples != 0);
         }
 
@@ -201,7 +201,7 @@ namespace SoundStretch
             Console.Error.Flush();
 
             int nChannels = inFile.GetNumChannels();
-            Debug.Assert(BUFF_SIZE%nChannels == 0);
+            Debug.Assert(BUFF_SIZE % nChannels == 0);
 
             // Process the 'inFile' in small blocks, repeat until whole file has 
             // been processed
@@ -211,7 +211,7 @@ namespace SoundStretch
                 int num = inFile.Read(sampleBuffer, BUFF_SIZE);
 
                 // Enter the new samples to the bpm analyzer class
-                int samples = num/nChannels;
+                int samples = num / nChannels;
                 bpm.InputSamples(sampleBuffer, samples);
             }
 
@@ -235,7 +235,7 @@ namespace SoundStretch
             if (parameters.GoalBpm > 0)
             {
                 // adjust tempo to given bpm
-                parameters.TempoDelta = (parameters.GoalBpm/bpmValue - 1.0f)*100.0f;
+                parameters.TempoDelta = (parameters.GoalBpm / bpmValue - 1.0f) * 100.0f;
                 Console.Error.WriteLine("The file will be converted to {0:0.0} BPM\n", parameters.GoalBpm);
             }
         }
